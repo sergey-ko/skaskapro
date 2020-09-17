@@ -1,2 +1,2 @@
 # skaskapro
-github pages for ![skaska.pro](http://skaska.pro) website
+github pages for [skaska.pro](http://skaska.pro) website
