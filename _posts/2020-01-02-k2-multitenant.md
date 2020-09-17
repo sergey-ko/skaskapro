@@ -7,7 +7,7 @@ tags: k2, saas, multitenant
 ---
 This is simplified case of real project, which included several multi-tenant systems we had to integrate and put some business process on top of them.
 
-#Situation
+# Situation
 Group of companies with shared processes.
 Each company has its own QBO account.
 Not all employees have access to all companies
@@ -20,12 +20,12 @@ Solution architecture should let us create one form for any case (for example �
 
 Ability to switch companies – QBO App like experience and adding new companies should not be a big deal.
 
-#Problem
+# Problem
 First option to consider is to use K2 functionality to access external systems using OAuth2. In this case, for each account (company) you have to create instances for appropriate SmartBroker. Then create SmartObject for each of these ServiceBroker Instances. Finally, you face question how to use all these SmartObjects in one form or in the same step of K2 Workflow.
 
 ![k2 form and mulltiple brokers](/assets/k2-multitenant/multitenant problem.png)
 
-#Solution
+# Solution
 Proposed solution includes lambda-k framework that helps in scenarios like this. Main components of the solution
 * OAuth handler - does exactly what K2 does with OAuth2 – stores access info and keeps keys actual
 * Custom service broker to access QBO
@@ -41,7 +41,7 @@ Control flow when user opens form is straightforward - header view is loaded fir
 * Stores validated organization id as view’s parameter
 * Other form’s views are loaded using organization id from header-view. Calls to QBO flow through custom service broker that uses actualized OAuth access info  
 
-#Header view
+# Header view
 This view contains following controls
 * Company logo or name, so that user is always aware what company he is working on
 * Custom control to store active/current company’s id
@@ -51,7 +51,7 @@ This view contains following controls
 
 When user wants to change company, he clicks logo image and selects company from list of companies he has access to.
 
-#Conclusion
+# Conclusion
 Client received solution for this multi-company scenario that both maintainable and easily extensible for new forms and companies. Same architecture is applicable in integrational scenarios with other systems/SaaS that use OAuth authentication.
 
 ![k2 multitenant form example](/assets/k2-multitenant/k2 multitenant form example.jpg)
