@@ -29,7 +29,9 @@ twitter_username: skaska
 github_username:  sergey-ko
 
 # Build settings
-theme: minima
+#theme: minima
+theme: jekyll-theme-minimal
+#theme: minimal-mistakes-jekyll
 plugins:
   - jekyll-feed
 
