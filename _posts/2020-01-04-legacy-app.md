@@ -1,6 +1,6 @@
 ---
-layout: post
-title:  "Goog old App"
+#layout: post
+title:  "Good Old App"
 date:   2020-01-01 11:45:56 +0700
 categories: architecture
 tags: architecture

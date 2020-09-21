@@ -1,5 +1,5 @@
 ---
-layout: post
+#layout: post
 title:  "IoT: edge, fog, cloud - why do you need them all"
 date:   2020-03-25 10:00:00 +0700
 categories: iiot

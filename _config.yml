@@ -18,22 +18,81 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
+name: Sergey Kovalev
 title: skaska
+subtitle: AI passioned and digital twin amazed
+logo: "/assets/skaska.png"
+
 email: s.kovalev@inbox.ru
 description: >- # this means to ignore newlines until "baseurl:"
   AI passioned and digital twin amazed
   cto, solution architect and team lead
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://skaska.pro" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: skaska
-github_username:  sergey-ko
+#twitter_username: skaska
+#github_username:  sergey-ko
+#linkedin_username: skovalev
+
+
+repository: "sergey-ko/skaskapro"
+
 
 # Build settings
-theme: minima
+#theme: minima
+#minima:
+#  skin: dark
+
+
+
 #theme: jekyll-theme-minimal
-#theme: minimal-mistakes-jekyll
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "mint" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
+
 plugins:
   - jekyll-feed
+
+search: true  
+include: ["_pages"]
+
+main:
+  - title: "Quick-Start Guide"
+    url: /docs/quick-start-guide/
+  - title: "Posts"
+    url: /year-archive/
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true      
+
+author:
+  name: "Sergey Kovalev"
+  avatar: "/assets/me.jpg"
+  bio: "CTO, Architect" # Note: Markdown is allowed
+  location: "Phuket, Thailand"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/sergey-ko"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/skovalev/"
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.
