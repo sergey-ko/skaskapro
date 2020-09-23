@@ -4,4 +4,4 @@ title: Stay in contact
 permalink: /stay-in-contact/
 ---
 
-follow me in linkedin
+contact me [Telegram](https://t.me/Sergey0Kovalev)

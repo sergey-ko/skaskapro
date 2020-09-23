@@ -47,19 +47,13 @@ repository: "sergey-ko/skaskapro"
 #theme: jekyll-theme-minimal
 #theme: minimal-mistakes-jekyll
 remote_theme: "mmistakes/minimal-mistakes"
-minimal_mistakes_skin: "mint" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
+minimal_mistakes_skin: "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
 
 plugins:
   - jekyll-feed
 
 search: true  
 include: ["_pages"]
-
-main:
-  - title: "Quick-Start Guide"
-    url: /docs/quick-start-guide/
-  - title: "Posts"
-    url: /year-archive/
 
 defaults:
   # _posts
@@ -68,6 +62,7 @@ defaults:
       type: posts
     values:
       layout: single
+      classes: wide
       author_profile: true
       read_time: true
       comments: true
@@ -87,12 +82,15 @@ author:
   bio: "CTO, Architect" # Note: Markdown is allowed
   location: "Phuket, Thailand"
   links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/sergey-ko"
+    - label: "Telegram"
+      icon: "fab fa-fw fa-telegram"
+      url: "https://t.me/Sergey0Kovalev"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/skovalev/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/sergey-ko"
 
 
 # Exclude from processing.
