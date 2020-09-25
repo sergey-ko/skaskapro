@@ -5,13 +5,13 @@ categories: iiot
 tags: iiot, ml, image processing
 ---
 # Context.IIoT project.
-Several cameras deployed in big railway locomotive repair facility. First tasks - get number of locomotives in facility and their positions. Specifics – no one camera can see whole locomotive due to facility configuration and locomotive size.
+Several cameras deployed in large railway locomotive repair facility. First tasks - get the number of locomotives in the facility and their positions. Specifics – no one camera can see the whole locomotive due to facility's configuration and locomotive size.
 
 # Stage #1. PoC
 Monolith python app that 
 -	Get streams from all cameras
--	Estimates head or tail position of locomotives on each camera
--	Combine estimations from all cameras into facility state estimation (array of all locomotives position estimation)
+-	Determines head or tail position of locomotives on each camera
+-	Combines estimations from all cameras into a facility state estimation (array of all the locomotives positions estimations)
 
 ![monolith app](\assets\ml-micro-services\monolith.png)
 
