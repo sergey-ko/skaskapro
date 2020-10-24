@@ -21,7 +21,7 @@ Since company is an early stage startup - this is very normal to concentrate on 
 - more delivery options required - API, dashboards
 
 # Solution
-Approach to deal with situation like this was inspired by Delta infrastructure delta.io
+Approach to deal with situation like this was inspired by [Delta architecture](https://delta.io)
 - bronze-silver-gold data
 - write-ahead-log and transaction approach for data batches processing 
 
