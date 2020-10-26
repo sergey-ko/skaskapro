@@ -7,7 +7,7 @@ tagline: ""
 header:
   overlay_image: assets/legacy-app/legacy app.jfif
   overlay_filter: 0.5
-  teaser: assets/legacy-app/legacy app.jfif
+  teaser: assets/legacy-app/legacy app teaser.png
 ---
 
 *Note: Article is more about tech side of changes not people.*

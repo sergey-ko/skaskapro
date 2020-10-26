@@ -7,10 +7,7 @@ tagline: ""
 header:
     overlay_image: assets/k2-blockchain/Blockchain.jpg
     overlay_filter: 0.5
-    #image: assets/k2-blockchain/Blockchain.jpg
-    teaser: assets/k2-blockchain/Blockchain.jpg
-    #feature: assets/k2-blockchain/Blockchain.jpg
-    #thumb: assets/k2-blockchain/Blockchain.jpg #keep it square 200x200 px is good
+    teaser: assets/k2-blockchain/blockchain teaser.jpg
 
 excerpt: "Azure Blockchain Workbench (BaaS) seamlessly integrates with K2"
 ---

@@ -7,7 +7,7 @@ tagline: ""
 header:
   overlay_image: assets/know-your-rules/know the rules sm.jpg
   overlay_filter: 0.5
-  teaser: assets/k2-multitenant/k2 five.jpg
+  teaser: assets/know-your-rules/k2 five.jpg
 ---
 
 Two-stage 'expenses approval' is used as example to show how and why rules engine can be used with BPMS. Process's dynamics is complete fake and used only for demo purposes.

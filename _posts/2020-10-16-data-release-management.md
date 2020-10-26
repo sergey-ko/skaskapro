@@ -7,7 +7,7 @@ tagline: ""
 header:
   overlay_image: assets/data-release-management/sale slip sm.jpg
   overlay_filter: 0.5
-  teaser: assets/data-release-management/sale slip.jpg
+  teaser: assets/data-release-management/sale slip teaser.jpg
 ---
 
 # Application
