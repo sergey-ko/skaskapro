@@ -3,7 +3,13 @@ title:  "Good Old App"
 date:   2020-01-01 11:45:56 +0700
 categories: architecture
 tags: architecture
+tagline: ""
+header:
+  overlay_image: assets/legacy-app/legacy app.jfif
+  overlay_filter: 0.5
+  teaser: assets/legacy-app/legacy app.jfif
 ---
+
 *Note: Article is more about tech side of changes not people.*
 
 # Common case of legacy App

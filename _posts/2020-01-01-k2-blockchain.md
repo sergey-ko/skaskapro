@@ -3,7 +3,18 @@ title:  "K2 for blockchain"
 date:   2020-01-01 11:45:56 +0700
 categories: k2
 tags: k2, blockchain, baas, azure
+tagline: ""
+header:
+    overlay_image: assets/k2-blockchain/Blockchain.jpg
+    overlay_filter: 0.5
+    #image: assets/k2-blockchain/Blockchain.jpg
+    teaser: assets/k2-blockchain/Blockchain.jpg
+    #feature: assets/k2-blockchain/Blockchain.jpg
+    #thumb: assets/k2-blockchain/Blockchain.jpg #keep it square 200x200 px is good
+
+excerpt: "Azure Blockchain Workbench (BaaS) seamlessly integrates with K2"
 ---
+
 Azure Blockchain Workbench (BaaS) seamlessly integrates with K2. This allows extending smart-contracts functionality with company’s internal processes and policies. [Slideshare: K2 and Blockchain](https://www.slideshare.net/SergeyKovalev2/k2-for-blockchain/)
 
 ![K2 and Blockchain](/assets/k2-blockchain/k2-for-blockchain.jpg)

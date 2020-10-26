@@ -3,8 +3,14 @@ title:  "K2 multitenant SaaS"
 date:   2020-01-02 11:45:56 +0700
 categories: k2
 tags: k2, saas, multitenant
+tagline: ""
+header:
+  overlay_image: assets/k2-multitenant/k2 five.jpg
+  overlay_filter: 0.5
+  teaser: assets/k2-multitenant/multitenant header.png
 ---
-This is simplified case of real project, which included several multi-tenant systems we had to integrate and put some business process on top of them.
+
+This is simplified use case of real project. Goak was to integrate several popular enterprise multi-tenant systems and put some business processes on top of them.
 
 # Situation
 Group of companies with shared processes.

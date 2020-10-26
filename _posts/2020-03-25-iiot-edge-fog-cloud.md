@@ -3,7 +3,13 @@ title:  "IoT: edge, fog, cloud - why do you need them all"
 date:   2020-03-25 10:00:00 +0700
 categories: iiot
 tags: iiot, iot, edge, fog, cloud
+tagline: ""
+header:
+  overlay_image: assets/iiot/iio fog.jpg
+  overlay_filter: 0.5
+  teaser: assets/iiot/iio fog.jpg
 ---
+
 In this short article I’d like to explain what different terms for computing in IoT data flow means, using RTLS as example. RTLS means Real Time Locating System and is used track real time location of persons and assets. In our product we use different technologies to provide RTL information - UWB/BLE for local tracking, GNSS tags for both global and precise outdoor (GPS RTK) tracking and visual object tracking for areas with no tags on persons and assets. Using these 3 examples I try to explain where and why use different approaches to IoT data streams processing.
 
 ![iiot high level data flow](\assets\iiot\iiot global data flow.png)

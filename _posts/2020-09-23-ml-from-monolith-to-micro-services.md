@@ -1,12 +1,15 @@
 ---
-title:  "ML: from monolith to microservices and data flows "
+title:  "ML: from monolith to microservices and data flows"
 date:   2020-09-23 09:00:00 +0700
 categories: iiot
 tags: iiot, ml, image processing
 tagline: ""
 header:
-  image: /assets/ml-micro-services/locomotive repair facility.jpg
+  overlay_image: assets/ml-micro-services/locomotive repair facility.jpg
+  overlay_filter: 0.5
+  teaser: assets/ml-micro-services/locomotive repair facility teaser.jpg
 ---
+
 It's a small story of IIoT project that involves some ML.
 
 # Project

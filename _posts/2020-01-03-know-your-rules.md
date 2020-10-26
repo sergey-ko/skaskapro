@@ -3,9 +3,13 @@ title:  "Know your rules"
 date:   2020-01-02 11:45:56 +0700
 categories: bpms
 tags: k2, bpms, rules engine
+tagline: ""
 header:
-  image: /assets/know-your-rules/know the rules sm.jpg
+  overlay_image: assets/know-your-rules/know the rules sm.jpg
+  overlay_filter: 0.5
+  teaser: assets/k2-multitenant/k2 five.jpg
 ---
+
 Two-stage 'expenses approval' is used as example to show how and why rules engine can be used with BPMS. Process's dynamics is complete fake and used only for demo purposes.
 
 # Step #0. Basic process
