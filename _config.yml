@@ -77,6 +77,9 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/sergey-ko"
+    - label: "Resume"
+      icon: "fas fa-fw fa-file"
+      url: "assets/Sergey Kovalev CTO-SA-TL.pdf"
 
 analytics:
   provider: "google-gtag"
