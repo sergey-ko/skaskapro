@@ -16,6 +16,11 @@ It's a small story of IIoT project that involves some ML.
 
 Large (really large) locomotive repair facility that is in ongoing 'digital transformation process'. Goal provide solution to determine number of locomotives in the facility and their accurate positions. To achieve it bunch of IP cameras were deployed to cover all repair stations. Specifics of deployment  - no single camera can see the whole locomotive due to facility's configuration and locomotive size.
 
+*In this article we will not discuss ML methods that we used in this project. Goal is to show monolith to micro-services transformation and why it's useful.*
+{% include video id="487488543" provider="vimeo" %}
+{% include video id="467010915" provider="vimeo" %}
+
+
 # Stage #1. PoC
 Monolith python app that
 - Gets streams from all cameras
@@ -29,7 +34,7 @@ PoC works and algorithms of locomotive position and facility state estimations n
 
 # Stage #2. Micro-services
 
-Application is devided into several types of services 
+Application is divided into several types of services 
 -	Video stream capture
 -	Image aggregator – receives, processes, caches images and generates packets for further processing
 -	Locomotive position estimator (**LPE**) – estimates position of locomotive on specific railway
