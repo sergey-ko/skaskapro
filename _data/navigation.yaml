@@ -2,7 +2,11 @@
 main:
   - title: "Home"
     url: /
+  # - title: "AI"
+  #   url: /ai-consulting/
+  - title: "Digital Twins"
+    url: /digital-twins/
   - title: "About"
     url: /about/
-  - title: "Contact me"
-    url: /stay-in-contact/
+  # - title: "Contact me"
+  #   url: /stay-in-contact/

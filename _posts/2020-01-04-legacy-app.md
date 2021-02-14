@@ -45,7 +45,7 @@ At this stage, the main goal is to show the business how to adapt the App to the
 * rules engine.
 Collect all low hanging apples first.
 
-![collecting low apples first](\assets\legacy-app\new architecture stage 1.png)
+![collecting low apples first](\assets\legacy-app\new architecture stage 2.png)
 
 The analysts’ (power users’) role can be set to work directly with business users and system (no developers) to increase business users’ happiness with fast results.
 The result is extensible and scalable architecture that is ready for the next steps.
