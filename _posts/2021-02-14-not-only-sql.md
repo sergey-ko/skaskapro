@@ -10,81 +10,85 @@ header:
   teaser: assets/legacy-app/legacy app teaser.jpg
 ---
 
-**draft**
-
 # Introduction
-After facing some legacy systems lately and complains ‘sql db is bottleneck’, ‘we have huge sql cluster’ or. Accompanying with ‘we plat to switch to micorservices’
-Somehow ‘microservices pattern’ is usually about separating ‘calculation’/’processing’ but not about data storage separation.
+After facing some legacy systems lately and complains ‘sql db is bottleneck’ and ‘we have huge sql cluster’, usually accompanying with something like ‘we plan to switch to microservices’. Idea came up to my mind that somehow ‘microservices pattern’ is usually interpreted as separating ‘calculation’ or ’processing’ but not about data storage separation. 
+*all below might look very opinionated, cause it is*
 
-ql Db in legacy solutions is usually used for
+SQL database in legacy solutions is usually used for storing
 -	Business data
 -	‘Stateful activity’
 -	Event logs (business, IoT, system)
 -	Business logic execution
 
+![sql db usage scenarios](/assets/sql-spaghetti/usage_scenarios.png)
+
+Let's dive deeper in each scenario
  
 # Business domain data
-Business data – even though you can move it to some document storage that make sense sometime, just leave it there for now. There are better options to start with.
+Business data – even though you can move it to some document storage that make sense sometime, just leave it there for now. There are usually better options to start optimization with.
  
 # Stateful activities
-What do I mean by these strange words combination
--	Different user interactions (tasks for users to fulfill and solution to monitor)
--	Workflows (‘sagas’)
+Any activity that will end one day but needs some persistence till that happy moment. Usually it's huge piece of work to do it in proper way but it looks pretty small until you dive deeper. Good new there are already solutions to handle all the heavy load.
+-	User interaction requests. When system needs some input from user. Common cases for enterprise solutions are all sorts of business process automation tasks ('approve document', 'fulfill form' etc.). 
+-	Workflows (‘saga pattern’)
 -	Message queuing
--	ETL artifacts
-Symptoms – tables is DB that are constantly updating (with some ‘status’ or ‘processing’ fields).
+-	ETL artifacts. Some data is processed on regular basis and process is usually multistage, so intermediary results are stored in tables.
 
-## User interactions
-Common cases for enterprise solutions are all sorts of business process automation tasks 
--	Approve some document
--	Fulfill some form 
-You not only want user (employee in enterprise case) to execute these task, but also to execute them within certain period of time (do not forget working calendar, employee sick leave), escalate them to manager. Some reporting of current status of tasks, history of each task, user activity and so far and so forth. 
-Solution – BPMS (business process management solutions) [link to articles] Camunda
-## Workflows and ‘saga’ pattern
-Solution – BPMS and specialized workflow engines
+![event logs](/assets/sql-spaghetti/stateful_activity.png)
 
-## Message queueing
-Simptoms
-You can usually spot these by looking at solution code – one or several ‘workers’ is the key.
+## Common symptoms
+- table that is constantly updating (number of update operations much greater then other operations) and 'loosely coupled' with other tables in DB
+- table with ‘status’/‘processed’ field or 'task' in table name
 
-## ETL artifacts
+|Scenario |Symptoms |Solutions| App examples|
+|---|---|---|---|
+|User interaction| tables refer to 'user data' table but is constantly updating |BPMS | Camunda|
+|WF, sagas| check for common symptoms| Specialized WF solutions |Temporal, Cadence, Netflix Conductor|
+|Queues |Look at solution code – one or several ‘workers’ is the key. |AMQP, Message bus | RabbitMq, Azure MessageBus|
+|ETL | Same as queues (look for 'workers' in the code) but tables usually contains bigger records |Build datapipe or use actor approach for 'stateful serverless' | Airflow, Luigi vs AKKA, Orleans|
 
-Solution – datapipes and sometimes stateful processing using actors (AKKA, Orleans) 
  
 # Event logs
-Main areas
--	IoT/IIoT data 
--	Business events
--	Systems, solution events
-Symptoms – huge tables with insert/select operations mostly
+Journals/records of 'actual events' that are not always structured.
+-	IoT/IIoT data. User interacts with some hardware and you log this event or some device’s sensor sends data system – think about it as IoT and handle these events in ‘modern way’
+-	Business events. External system is generates data that needs to be processed
+-	System, application, solution events, user UI interaction events etc.
 
-## IIoT
-User interacts with some hardware and you log this event or some device’s sensor sends data system – think about it as IoT and handle these events in ‘modern way’
--	Store raw events in NoSql Db
--	Create data-pipe to process them
--	Save consumable results in Datawarehouse or use lambda/kappa architectures
-Solutions – start with NoSql Db storage (documents or timeseries dbs) 
+![event logs](/assets/sql-spaghetti/log.png)
 
-## Business events
-User or 
-Solutions – Documents oriented NoSQL Db (MongoDb, Azure CosmosDb etc.)
+## Common symptoms
+- huge (in terms of number of rows) tables that constantly growing with no links to other tables
+- 'append only' tables that periodically cleaned up (mostly manually)
 
-## Systems events
-Yes, we are talking about logging of systems and solutions behavior events, user UI interaction events etc. No reason to keep it in SQL.
-Solutions – dive into logging at this stage almost anything will do
- 
+|Scenario |Solution| App examples|
+|---|---|---|
+|IoT|*simple processing| MongoDb, Clickhouse|
+|Business events |*simple processing |MongoDb, Clickhouse|
+|System events| Logging solutions | ELK, Prometheus|
+
+#### **Simple processing*
+- Store raw incoming events in NoSql Db (MongoDB) with TTL
+- Create data-pipe to process them (Airflow, Luigi, Spark) or go with RabbitMQ and console-apps
+- Save consumable results in Datawarehouse or OLAP-friendly DB (Clickhouse) 
+
+Check 'stream processing' approaches, but it might be too much at this stage.
+
 # Stored procedures and triggers
 Last but not the least. You have tons of stored procedures and triggers, in other words lots of solutions business logic leaves there
--	Triggers – check ‘stateful activities’ part of this article
--	Heavy aggregating procs (generates reports) – check datapipes or ‘staged data’ (raw, cleaned/enriched, aggregated for consumption)
--	Scheduled heavy updating procs with (like recalculation of salary in big enterprise) – BPMS and/or immutable data pattern
-(Very opinionated) usually lot’s stored procs and/or triggers is pure evil. 
- 
+
+|Component| Example | Solution|
+|---|---| ---|
+|Triggers | Start 'next step' of processing after 'status' is changed |check ‘stateful activities’ part of this article|
+|Heavy aggregating procedures |Generating reports or spreadsheets for export| check datapipes|
+|Scheduled heavy updating procedures |Salary recalculation in big enterprise)| BPMS/WF and/or immutable data pattern|
+
+**(Very opinionated)** usually lot’s stored procedures and/or triggers is pure evil. 
+
 # Conclusion 
-There are defiantly more cases of using SQL DBs and other persistence approaches than mentioned in this short article. 
-Anytime you create something in DB think about it – do I need to store event or change 
-There is nothing wrong to use DB for all the things mentioned above, but there are special solutions to handle these tasks with 
--	More functionality (even if don’t need it now, it’s like a good old hammer – you’ll see many nails around)
--	Better tested (usually) and more productive/optimized 
+There are definitely more cases of using SQL DBs and other persistence approaches than mentioned in this short article. 
+Nothing wrong to use DB for all the things mentioned above, but there are special solutions to handle these tasks with 
+-	More functionality. Even if don’t need it now, it’s like a good old hammer – you’ll see many nails around.
+-	Better tested, production ready and better optimized 
 -	Community to support and developers to find
-Your solution might be unique but usually (in most cases) contains not unique blocks.
+
+Your solution might be unique but usually cn be split into not unique blocks.
