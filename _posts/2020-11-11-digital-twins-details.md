@@ -13,15 +13,15 @@ header:
 # Digital twins: implementation
 Let us dive deeper into Digital Twins implementation. The way I see 3 big classes of Digital Twins is described [here](digital-twins-3-types). 
 First, we will look at types of basic building blocks we need to implement Digital Twins in IIoT solution
-- digital twin actor extention
-- management extention for digital twin instances
+- digital twin instance implementation extension
+- management extension for digital twin instances
 - data flows
 
 Then we take a look at 2 projects and how these blocks can help solve real life scenarios.
 ## Base Digital Twins
-Goal is to _extend_ (adopt?) actor model (AKKA, Orleans) for simpler yet more powerfull tool to model digital twins.
+Goal is to _extend_ (adopt?) model for simpler yet more powerful tool to model digital twins.
 
-![digital twim implementation diagram](assets\dt-implemetation\diti base.png)
+![digital twin implementation diagram](assets\dt-implemetation\diti base.png)
 
 Types of blocks
 
@@ -30,24 +30,22 @@ Types of blocks
 - Simple (on/off) or more complicated state-machine
 -	Sending live state data every 1 second/minute etc
 2. Algorithmic Estimator
--	Classical determenistic or neural nets algorythm to estimate internal state of the object or process
+-	Classical deterministic or neural nets algorithm to estimate internal state of the object or process
 3.	Probabilistic estimator
 -	For example estimating BLE asset tag
 - Telemetry as input
 -	Particle filter
--	Keeps prob-distribution as a internal actor state
+-	Keeps prob-distribution as a internal state
 -	Outputs – best/mean/distribution 
 4.	Aggregator
-- Conbine 2 or more streams of potentially different frequency and latency into one
+- Combine 2 or more streams of potentially different frequency and latency into one
 5.	System estimator
 -	Inputs are from estimators 
 -	Conflict re-solving
 
 ## Management extension
 
-*_In terms of AKKA – supervisor object_
-
-Management block (or extension) is used when we have more than one actor of the same type and one data flow that needs to be separated into several (one for each actor) according to some rule. 
+Management block (or extension) is used when we have more than one DT of the same type and one data flow that needs to be separated into several (one for each DT) according to some rule. 
 
 ![digital twim manager implementation diagram](assets\dt-implemetation\diti manager.png)
 
