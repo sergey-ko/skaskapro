@@ -8,11 +8,11 @@ header:
   overlay_image: assets/architecture-decisions/Ancient-Egyptian-Scribe-Hieroglyphs.jpg
   overlay_filter: 0.5
   teaser: assets/architecture-decisions/scribes-at-work.jpg
+toc: true
+toc_label: "Table of Contents"
+toc_icon: "cog"  
 ---
-Please, not this is **work in progress**
-
-* Do not remove this line (it will not be displayed)
-{:toc}
+Please, note this is **work in progress**
 
 # What is it
 An architecture decision (AD) is a software design choice that addresses a significant requirement.
