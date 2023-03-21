@@ -1,5 +1,5 @@
 ---
-title:  "[draft] Architecture decisions: thoughts"
+title:  "Some thoughts on Architecture Decisions"
 date:   2021-12-20 08:45:56 +0300
 categories: architecture
 tags: architecture
@@ -8,11 +8,7 @@ header:
   overlay_image: assets/architecture-decisions/Ancient-Egyptian-Scribe-Hieroglyphs.jpg
   overlay_filter: 0.5
   teaser: assets/architecture-decisions/scribes-at-work.jpg
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "cog"  
 ---
-Please, note this is **work in progress**
 
 # What is it
 An architecture decision (AD) is a software design choice that addresses a significant requirement.
@@ -44,20 +40,20 @@ As an example check article [Sql is not everything you need](/not-only-sql)
 ## Safe play
 **No pain no gain** or **agile trap** quadrant.
 How is it *an agile trap*? 
-All ADs that are made with only looking at current needs of the project. Is it bad – no. But this kind of decision making will probably make you start *v2.0* of your app much sooner than expected. Reason - no **platform vision** in architecture.
+All ADs that are made with only looking at current needs of the project. Is it bad – no. But this kind of decision making фззкщфср will probably make you start *v2.0* of your app much sooner than expected. Reason - no **platform vision** in architecture.
 
 ## Vision
-Hardest one, because it’s easy to fail into *overengineering*. Example - migration from Docker Swarm into Kubernetes. Unless product really profits from this migration in near future (6-12 months) this might be an overkill.
+Hardest one, because it’s easy to fail into *overengineering*.
 
 ## Overengineering
-Nothing wrong with this quadrant, unless all decisions end up here.
+Nothing is wrong with this quadrant, unless all decisions end up here.
 
 # Multiple ADs, not ONE
 ![multiple architecture decisions](assets/architecture-decisions/architecture-decisions-portfolio.png)
 
 
 # Value over time
-Good example is AD from *vision* quadrant. Rarely you can put them right in that quadrant from the very beginning. Initially these decisions tend to move to *overengineering* quadrant first, and if team is lucky and persistent, it will eventually move to *vision*.
+Good example is AD from *vision* quadrant. Rarely you can put all ADs right in that quadrant from the very beginning. Initially these decisions tend to move to *overengineering* quadrant first, and if team is lucky and persistent, it will eventually move to *vision*.
 
 ![architecture decisions value evolution over time](assets/architecture-decisions/architecture-decisions-value-evolution-over-time.png)
 
@@ -69,13 +65,10 @@ Let's recap
 
 Team should work with ADs as with any portfolio using **risk-reward** estimation approach, i.e. in general, accept some risk of **overengineering** but manage it.
 
-![risk reward](assets/architecture-decisions/portfolio-risk-reward.jpeg)
-
 Managing risk of *overengineering* means
 - mistakes will happen, but they are allowed
 - reevaluate AD often
 - be transparent and honest with team
 
-
 # Guesstimate
-Do not underestimate element of luck in decision making - team operates with incomplete information in undetermined world .
+Do not underestimate element of luck in decision making - team operates with incomplete information in fast changing world.

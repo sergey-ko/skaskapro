@@ -4,8 +4,8 @@ main:
     url: /
   # - title: "AI"
   #   url: /ai-consulting/
-  - title: "Digital Twins"
-    url: /digital-twins/
+  # - title: "Digital Twins"
+  #   url: /digital-twins/
   - title: "About"
     url: /about/
   # - title: "Contact me"
