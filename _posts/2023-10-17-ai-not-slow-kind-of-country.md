@@ -7,7 +7,7 @@ tagline: ""
 header:
   overlay_image: /assets/ai-transformation/Alice_queen2.jpg
   overlay_filter: 0.5
-  teaser: /assets/ai-transformation/Alice_queen2.jpg
+  teaser: /assets/ai-transformation/Alice_queen2_sm.jpg
 ---
 
 Back in business - after dramatic pause and 3 projects behind 😀
