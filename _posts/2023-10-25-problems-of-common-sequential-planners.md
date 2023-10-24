@@ -1,13 +1,13 @@
 ---
-title:  "Sequantial planner flaws"
+title:  "Sequential planner flaws"
 date:   2023-10-25 00:00:56 +0500
 categories: ai
 tags: ai
 tagline: ""
 header:
-  overlay_image: assets/sequential-planners/robot-planner-3-wide.png
+  overlay_image: assets/sequential-planners/robot-planner-3-wide.jpg
   overlay_filter: 0.5
-  teaser: assets/sequential-planners/robot-planner-2-sm.png
+  teaser: assets/sequential-planners/robot-planner-2-sm.jpg
 ---
 
 >Disclaimer #1: everything below is based o experiments with Semantic Kernel (version < 1.0). Langchain has same problems, but I did not do deep dive. 
