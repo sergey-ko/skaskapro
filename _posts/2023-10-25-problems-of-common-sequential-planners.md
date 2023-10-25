@@ -10,11 +10,11 @@ header:
   teaser: assets/sequential-planners/robot-planner-2-sm.jpg
 ---
 
->Disclaimer #1: everything below is based o experiments with Semantic Kernel (version < 1.0). Langchain has same problems, but I did not do deep dive. 
+>Disclaimer #1: The following observations are derived from experiments with Semantic Kernel (version < 1.0). Although Langchain has similar issues, I haven't delved deeply into it.
 
->Disclaimer #2: main topic to discuss here is creating of the plan, not executing it
+>Disclaimer #2: The primary focus of this discussion is on formulating a plan, not its implementation.
 
->Disclaimer #3: CoT, ToT, GoT etc. is not the case here.
+>Disclaimer #3: Concepts like CoT, ToT, GoT, and the like are not relevant in this context.
 
 ## Sequential planner flow
 
