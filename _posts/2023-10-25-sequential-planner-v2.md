@@ -64,6 +64,8 @@ __Key points__:
 
 The main difference of the described approach from __[X]_of_Thoughts__ approaches (CoT, ToT, GoT, etc.) is that we are okay to introduce non-defined steps and define them later, instead of doing a search only in the space of available functions.
 
+![simplified version of hierarchical task split algorithm](/assets/sequential-planners/hierarchical_task_split.png)
+
 ### Example A: Simple Case => Success Plan
 
 Below is a diagram describing a simple case that is identical to a common sequential planner:
