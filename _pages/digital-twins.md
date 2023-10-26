@@ -16,11 +16,7 @@ Please, take a look at these 3 posts
 
 - *Infrustructure for Digital Twins* (**under construction**)
 
-Here's a video on digital twins that you might find helpful:
-
-{% include youtube.html id="vPTljRpzPwg" %}
-
-[link](https://www.youtube.com/watch?v=vPTljRpzPwg&t=9s)
+Here's a video on digital twins that you might find helpful: [link](https://www.youtube.com/watch?v=vPTljRpzPwg&t=9s)
 
 
 
