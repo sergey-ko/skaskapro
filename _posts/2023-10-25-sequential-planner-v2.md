@@ -10,82 +10,83 @@ header:
   teaser: assets/sequential-planners/robot-planner-2-sm.jpg
 ---
 
-This is part 2 ([part 1](/problems-of-common-sequential-planners))
+This is part 2 ([part 1](/problems-of-common-sequential-planners)).
 
-## Initial idea for plan generation
+## Initial Idea for Plan Generation
 
-Create planner that can 
-- confirm that final result structure and acceptance criterias are met
-- respond to calling system if some information or functionality is missing 
-- use top to buttom approach and split tasks into smaller one if necessary
-- work with collections/lists and other data structures
-
+Create a planner that can:
+- Confirm that the final result structure and acceptance criteria are met.
+- Respond to the calling system if some information or functionality is missing.
+- Use a top-to-bottom approach and split tasks into smaller ones if necessary.
+- Work with collections/lists and other data structures.
 
 ## Implementation
-Main points
-- user or invoking system provides information necessary to formulate extended version
-- planner consists of 2 modules - task manager that interacts with user/system and planner that creates plan and interact with task manager
 
-![seqential planner v2](/assets/sequential-planners/planner_v2.png)
+Main points:
+- The user or invoking system provides information necessary to formulate an extended version.
+- The planner consists of two modules: a task manager that interacts with the user/system and a planner that creates a plan and interacts with the task manager.
 
+![Sequential Planner v2](/assets/sequential-planners/planner_v2.png)
 
-### Extending task description
- Task description that is passed to planner need to have not olny task text but also
- - high level values for planner (i.e. mission, project context)
- - input information description
- - resulting documents description
- - acceptance criterias
+### Extending Task Description
 
- This extended description can be either result of interaction with the user/system or generated from project description and documentation, common sense etc.
+The task description that is passed to the planner needs to have not only the task text but also:
+- High-level values for the planner (i.e., mission, project context).
+- Input information description.
+- Resulting documents description.
+- Acceptance criteria.
 
-### Hierarchical task splitting
+This extended description can be either the result of interaction with the user/system or generated from project description and documentation, common sense, etc.
 
-Start of the algorithm is almost the same as for conventional sequential planner. Difference is extended task description, but we can ignore it for now.
+### Hierarchical Task Splitting
 
-__Given__
-- task as string
-- extended task description
-- list of available functions in the form planner can understand
+The start of the algorithm is almost the same as for a conventional sequential planner. The difference is the extended task description, but we can ignore it for now.
 
-__Algorithm__
-- try to solve task using conventional planner and existing functions. if solved => __hurra! done__
-- ask planner to split task into several (not many 5-10) stages with detailed description (same as extended description for initial task) on each step
-- [recursion]
-  - for each stage try to resolve it by conventional planner or by splitting into smaller stages
-  - if recurion work => fine!
-  - if not - dig down till some level.
+__Given__:
+- Task as a string.
+- Extended task description.
+- List of available functions in the form the planner can understand.
 
-__Key points__
-- keep records of all explored steps (tree/graph of hypothesys)
-- be creative and try splitting into stages multiple times (i.e. high __temperature__)
-- distinguish between 2 problem for solution not found (stage can not be rresolved with conventional planners)
-  - can not apply conventional planner due to lack of functions
-  - additional information/document is required
+__Algorithm__:
+- Try to solve the task using a conventional planner and existing functions. If solved => __hurrah! Done__.
+- Ask the planner to split the task into several (not many 5-10) stages with a detailed description (same as the extended description for the initial task) on each step.
+- [Recursion]
+  - For each stage, try to resolve it by a conventional planner or by splitting it into smaller stages.
+  - If recursion works => fine!
+  - If not, dig down till some level.
 
-Main difference of described approach from __[X]_of_Thoughts__ approaches (CoT, ToT, GoT etc.) is that we are ok to introduce non-defined steps and define them later, instead of doing search only in the space of availble functions.
+__Key points__:
+- Keep records of all explored steps (tree/graph of hypotheses).
+- Be creative and try splitting into stages multiple times (i.e., high __temperature__).
+- Distinguish between two problems for a solution not found (stage cannot be resolved with conventional planners):
+  - Cannot apply conventional planner due to a lack of functions.
+  - Additional information/document is required.
 
-### Example A: simple case => success plan
-Below is diagram describing simple case that is identical to common sequential planner
-- task is successfully split into several activities/subtasks
-- each activity is mapped to exisiting skill from given skillset
-- input document mapped to input of *activity A* (skill A)
-- output document is output from last *activity C* (skill C)
+The main difference of the described approach from __[X]_of_Thoughts__ approaches (CoT, ToT, GoT, etc.) is that we are okay to introduce non-defined steps and define them later, instead of doing a search only in the space of available functions.
 
-![simple case plan](/assets/sequential-planners/simple_case_plan.png)
+### Example A: Simple Case => Success Plan
 
+Below is a diagram describing a simple case that is identical to a common sequential planner:
+- The task is successfully split into several activities/subtasks.
+- Each activity is mapped to an existing skill from the given skillset.
+- The input document is mapped to the input of *activity A* (skill A).
+- The output document is the output from the last *activity C* (skill C).
 
-### Example B: simple case => problematic plan
-This is more complex case 
-- planner was unabled to map initial task into sequence of skills
-- planner splitted initial task into high level activities
-  - activity #1 and activity #2 were sucessfully mapped into sequence of skills
-  - but there was a problem with activity #3 - it requred additional information (document X)
-- though planner tried to create plan for several times , __document X__ was always required 
-- this request for __document X__ passed to __task manager__ module
+![Simple Case Plan](/assets/sequential-planners/simple_case_plan.png)
 
+### Example B: Simple Case => Problematic Plan
 
-![bad planning](/assets/sequential-planners/multilevel_case_plan.png)
+This is a more complex case:
+- The planner was unable to map the initial task into a sequence of skills.
+- The planner split the initial task into high-level activities.
+  - Activity #1 and activity #2 were successfully mapped into a sequence of skills.
+  - But there was a problem with activity #3 - it required additional information (document X).
+- Though the planner tried to create a plan several times, __document X__ was always required.
+- This request for __document X__ was passed to the __task manager__ module.
 
+![Bad Planning](/assets/sequential-planners/multilevel_case_plan.png)
 
 ## Conclusion
-High level description of algorithm for advanced planning was given and initial ideas implemented.
+
+A high-level description of the algorithm for advanced planning was given, and initial ideas were implemented.
+

@@ -10,90 +10,85 @@ header:
   teaser: assets/sequential-planners/robot-planner-2-sm.jpg
 ---
 
-Cosider this part 3 of "Sequential planner' series ([part 1](/problems-of-common-sequential-planners), [part 2](/sequential-planner-v2))
+**Consider** this as part 3 of the "Sequential Planner" series: [part 1](/problems-of-common-sequential-planners), [part 2](/sequential-planner-v2).
 
 ## Idea
 
-Imagine having unlimited access to __remote__ mid and junior level knowledge workers. The only downside is that they do not Zoom. Otherwise
-- they know how to use Jira and Confluence
-- they can work 24*7
-- they track thier work and validate results
-- they asks for help 
-- ... and so on
+Imagine having unlimited access to **remote** mid and junior-level knowledge workers. The only limitation? They don't use Zoom. However:
+- They are proficient with Jira and Confluence.
+- They are available 24/7.
+- They meticulously track their work and validate outcomes.
+- They seek assistance when needed.
+- ... and much more.
 
-### interaction scenario
+### Interaction Scenario
 
-Example of possible interaction scenraio
-- User have a chat with **manager agent** (MA) and formulate a task
-- MA sets task in Jira and assing it to proper **worker agent** (WA)
-- WA creates a plan to execute a task, asks clarifing questions and/or additional documents. Plan can be in the form of sub tasks in Jira.
-- After plan is created WA starts to execute it, while updating each sub task status
-- After all subtasks are executed and task is finished, MA runs verification/validation task and if everything is ok, sets status of initial task to *done*
+Here's an illustrative interaction scenario:
+- A user converses with a **manager agent** (MA) to define a task.
+- The MA logs the task in Jira and assigns it to the appropriate **worker agent** (WA).
+- The WA drafts a strategy to accomplish the task, seeking clarifications or supplementary documents if necessary. This plan might manifest as sub-tasks within Jira.
+- Once the plan is set, the WA commences its execution, continually updating the status of each sub-task.
+- After completing all sub-tasks, the MA conducts a verification/validation. If all criteria are met, the status of the primary task is marked as *done*.
 
-
-## Current state of agent development
+## Current State of Agent Development
 
 ### Simple
-Agents viewed as remote procedure call not as planning and executing entity. Sometime even orchestrated from outside (i.e. check __agentprotocol__)
+Agents are often perceived as mere remote procedure calls rather than entities capable of planning and execution. Sometimes, they're even externally orchestrated (e.g., check **agentprotocol**).
 
 ### Planners
-Please check [part 1](/problems-of-common-sequential-planners) and [part 2](/sequential-planner-v2) to understand flaws of current planners and ways to evolve them.
+To grasp the limitations of current planners and potential improvements, refer to [part 1](/problems-of-common-sequential-planners) and [part 2](/sequential-planner-v2).
 
 ### Reasoning
-CoT, ToT, GoT - these approached aimed more at reasoning, not at cooperative task solving. Though they can definetly be used as _low level_ approaches.
+CoT, ToT, GoT – these methods focus predominantly on reasoning, not on collaborative task resolution. Nonetheless, they can certainly serve as _low-level_ approaches.
 
-## Main hint - workflows engines analogy
-Yes, workflows are something that has to go on and on for multiple times. But it's main analogy to understand task execution. Check something like Camunda, Nintex,  Azure Logic Apps etc..
-Think of task setup as configuring workflow 
-- internal variables
-- subprcesses
-- external system update
-- etc.
-Task execution is like executing such workflow. But only once.
+## Main Hint: Workflow Engines Analogy
 
+Indeed, workflows are repetitive processes. However, they offer a prime analogy for understanding task execution. Explore platforms like Camunda, Nintex, Azure Logic Apps, etc. Envision task setup akin to configuring a workflow, accounting for:
+- Internal variables.
+- Sub-processes.
+- Updates to external systems.
+- And more.
+The task execution can be likened to running such a workflow – but just once.
 
-## Missing ingredients
+## Missing Ingredients
 
-4 main ingredients that are missing in current SOTA agent developments
-- advanced task planning approach, including hierarchical task split and ask-plan-execute approach
-- flexibilities in terms of multiple kernels/LLMS, complex internal (to task) data types (entities, collections)
-- resilience as external task and subtasks states and statuses
-- integration with tasks management systems, wikis, document portals
+There are four pivotal components currently absent in state-of-the-art agent developments:
+- An innovative task planning methodology, incorporating hierarchical task decomposition and the ask-plan-execute strategy.
+- Flexibility concerning multiple kernels/LLMS and intricate internal data types (entities, collections).
+- Resilience regarding external task and sub-task states and statuses.
+- Seamless integration with task management systems, wikis, and document portals.
 
-![new agent core](/assets/sequential-planners/new_core.png)
-
+![New Agent Core](/assets/sequential-planners/new_core.png)
 
 ## Agent Core
 
-### 3 modules
+### Three Modules
 
-Agent core functionality can be split into 3 modules
-- manager 
-  - interacts with user or high level system
-  - main goal is to create detailed description of task
-- planner
-  - using detailed task description tries to build a plan for execution
-  - can ask manager for additional info and report problems if task plan can not be created due to lack of skills orinformation
-  - provides search tree together with execution plan, so that executor have some infor in case of problems during plan execution
-  - plan is posted to task management system (TMS)
-- executor
-  - executes plan by either using skill directly or with help of _simple agents_
-  - during execution tasks statuses are updated in TMS, some artifacts can be created in wikis, portals, code repositories
+The core functionality of an agent can be divided into three modules:
+- **Manager**: 
+  - Engages with users or high-level systems.
+  - Primarily aims to draft a detailed task description.
+- **Planner**:
+  - Utilizes the detailed task description to devise an execution plan.
+  - Can seek further information from the manager or report issues if the task plan is unfeasible due to insufficient skills or data.
+  - Delivers a search tree alongside the execution plan, offering insights to the executor in case of execution issues.
+  - The plan is uploaded to the task management system (TMS).
+- **Executor**:
+  - Carries out the plan either autonomously or with the assistance of _simple agents_.
+  - Updates task statuses in the TMS during execution. Some artifacts may also be generated in wikis, portals, or code repositories.
 
-### Planning execution
-Treat agent as junior dev - do not expect perfect knowledge of your domain and perfection in anything. 
-Let agent to formulate what and how it plan to achieve required result (check __Hierarchical task split__).
-Hierachical planner can return either plan to execute or one of 2 errors - lack of functions and lack of information. 
-Lack of additional information or functionality can be treated as call for help.
+### Planning Execution
 
-### Tasks, wikis etc.
+Approach the agent as you would a junior developer: don't anticipate exhaustive domain knowledge or flawless execution. Allow the agent to outline its approach to achieving the desired outcome (see **Hierarchical task split**). A hierarchical planner can either produce an executable plan or one of two errors: lack of functions or lack of information. These inadequacies can be interpreted as calls for assistance.
 
-While common approach (exept for MemGPT) is to keep all execution log in context, idea is to use wiki and/or task description to store intemediary information.
-Reasons
-- this is key for parrallel execution and multiple agents working on subtasks
-- tracking of agents activities is simple due to common solutions task management and wikis
+### Tasks, Wikis, etc.
 
-To achieve this agents need to have ideas on tasks, subtasks, thier relations, statuses etc. and wiki structure. Reasoning behind this is that differect teams run projects in different ways.
+While the conventional approach (except for MemGPT) retains the entire execution log in context, the proposition here is to use a wiki and/or task description to house intermediary data. The motivations are:
+- It's pivotal for parallel execution and multiple agents working on sub-tasks.
+- Agent activities are easily traceable, thanks to standard task management solutions and wikis.
 
-## Future work
-Future work is simple - implement __Core__ for Wrokforce Agents.
+For this to be feasible, agents must understand tasks, sub-tasks, their interrelations, statuses, etc., as well as the structure of the wiki. This understanding is essential as different teams manage projects in varied ways.
+
+## Future Work
+
+The way forward is clear: develop the **Core** for Workforce Agents.

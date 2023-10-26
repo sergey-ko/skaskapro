@@ -18,7 +18,7 @@ Please, take a look at these 3 posts
 
 Here's a video on digital twins that you might find helpful: [link](https://www.youtube.com/watch?v=vPTljRpzPwg&t=9s)
 
-{% youtube vPTljRpzPwg %}
+{% include video id="-vPTljRpzPwg" provider="youtube" %}
 
 
 

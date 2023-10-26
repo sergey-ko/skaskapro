@@ -10,59 +10,58 @@ header:
   teaser: assets/sequential-planners/robot-planner-2-sm.jpg
 ---
 
->Disclaimer #1: The following observations are derived from experiments with Semantic Kernel (version < 1.0). Although Langchain has similar issues, I haven't delved deeply into it.
+>**Disclaimer #1:** The insights shared in this article are based on experiments conducted with Semantic Kernel (version < 1.0). While Langchain exhibits similar challenges, I have not delved deeply into its workings.
 
->Disclaimer #2: The primary focus of this discussion is on formulating a plan, not its implementation.
+>**Disclaimer #2:** The crux of this discussion revolves around devising a plan, rather than its execution.
 
->Disclaimer #3: Concepts like CoT, ToT, GoT, and the like are not relevant in this context.
+>**Disclaimer #3:** Concepts such as CoT, ToT, GoT, etc., are not pertinent to this discussion.
 
-## Sequential planner flow
+## The Sequential Planner Flow
 
-Current implementation of sequential planner
+An overview of the current implementation of the sequential planner:
 
-__Given__
-- goal as string
-- list of available functions in the form planner can understand (SK => plugins)
+**Given:**
+- A goal expressed as a string.
+- A list of available functions that the planner can interpret (SK => plugins).
 
-__Flow__
-- extract smaller list of functions that might be usefull for specified task
-- construct a prompt that includes
-  - list of functions descriptions
-  - instructions to construct plan
-  - goal
-- call LLM with constructed prmpt to get the plan
+**Flow:**
+- Extract a concise list of functions that may be relevant for the task at hand.
+- Formulate a prompt encompassing:
+  - Descriptions of the selected functions.
+  - Directions to craft a plan.
+  - The specified goal.
+- Engage the LLM with the crafted prompt to obtain the plan.
 
-#### plan example
-For a given goal: Summarize an input, translate to french, and e-mail to John Doe. Following plan was created
+#### Plan Example:
+
+Given the objective: "Summarize an input, translate it to French, and e-mail it to John Doe", the following plan was devised:
 
 ```
- Steps:
+Steps:
   - SummarizePlugin.Summarize input='$INPUT' => SUMMARY
   - WriterPlugin.Translate input='$SUMMARY' => TRANSLATED_SUMMARY
   - email.GetEmailAddress input='John Doe' => EMAIL_ADDRESS
   - email.SendEmail input='$TRANSLATED_SUMMARY' email_address='$EMAIL_ADDRESS'
 ```
 
+## Limitations of the Current Approach
 
-## Downsides of such implementation
-For simple tasks with small plans current approach works. All the fun starts when we try bigger and more complicated problems.
+While this methodology suffices for rudimentary tasks with concise plans, it falters when addressing more intricate challenges. Some of the pitfalls include:
 
-- despite promt instruction, generated plan might use collections as variables
-- final solution structure is undefined. additional instructions does not help since there is no verification
-- if function required to fullfill the goal is missing, calling system would never know about it
-- if additional information is required to fullfill the goal, calling system would never know about it
+- Irrespective of the prompt instructions, the generated plan may inadvertently employ collections as variables.
+- The structure of the final solution remains ambiguous. Merely augmenting instructions is ineffective, given the absence of a verification mechanism.
+- Should a function crucial for achieving the goal be absent, the invoking system remains oblivious.
+- Similarly, if supplementary information is essential for goal accomplishment, the system remains uninformed.
 
-## There is light
+## A Glimmer of Hope
 
-First, GPT4 level LLM can provide algorithm to solve almost any task (i.e. 12 tasks mentioned in [ARC report](https://evals.alignment.org/blog/2023-08-01-new-report/)). I.e. split task into smaller ones.
-Yes, provided algorithm might not be ideal, but with the help of multiple generations (with non-zero temperture) we might achive proper results.
+Firstly, LLMs at the caliber of GPT-4 are equipped to devise algorithms to tackle almost any challenge (e.g., the 12 tasks delineated in the [ARC report](https://evals.alignment.org/blog/2023-08-01-new-report/)). This includes the ability to decompose a task into more manageable sub-tasks. While the resultant algorithm may not always be optimal, leveraging multiple generations (with a non-zero temperature) could pave the way for satisfactory outcomes.
 
+## Proposed Solution
 
-## Idea
-
-Create planner that can 
-- confirm that final result structure and acceptance criterias are met
-- respond to calling system if some information or functionality is missing 
-- use top to buttom approach and split tasks into smaller one if necessary
-- work with collections/lists and other data structures
+The aspiration is to develop a planner capable of:
+- Ensuring that the final result adheres to the defined structure and meets acceptance criteria.
+- Informing the invoking system in case certain information or functionality is lacking.
+- Employing a top-down strategy, further dissecting tasks as needed.
+- Seamlessly integrating with collections/lists and other data structures.
 
