@@ -3,26 +3,38 @@ classes: wide
 title: About
 permalink: /about
 ---
-Solution architect, CTO and consultant with 15+ years of experience in enterprise and international startups.
-Ping me [on telegram](https://t.me/Sergey0Kovalev) if you need some help or just wanna discuss any of the topics
 
-## Legacy solution due diligence and transformation
--	Code and architecture review
--	Development, QA and deployment processes
--	Infrastructure/services optimization
--   Cloud migration
+**Solution Architect, CTO, and Consultant** with over 15 years of expertise spanning both established enterprises and burgeoning international startups. If you require assistance or simply wish to engage in a stimulating discussion on any relevant topics, feel free to [reach out to me on Telegram](https://t.me/Sergey0Kovalev).
 
-Check these posts: [one](/legacy-app), [two](/not-only-sql) 
+## AI / ML
 
-## IIoT 
-You are in a process of digital transformation or just want to test this modern ‘IIoT’ in your facility
--	Project Architecture and path of implementing IIoT solution to minimize your risks
--	Data pipeline improvements either on-premise or cloud
--	Digital Twins – once you have data streaming under control let’s make most sense of it 
+I've spearheaded numerous projects in this domain, including:
+- Real-time positioning of locomotives using video stream analytics.
+- Indoor real-time personnel tracking leveraging UWB and BLE technologies.
+- Extracting requirements from documents and assessing their quality utilizing LLM techniques.
+- Developing autonomous workforce agents through LLM.
 
-There is dedicated [page](/digital-twins)  
+## Legacy Solution Due Diligence and Transformation
 
-## Startup, RnD, from 0 to 1
--	SoTA AI and ML applicability in your business domain
--	Estimate budget and timeline for prototype and MVP
--	Assemble a team or outsource app development 
+My services in this arena encompass:
+- Comprehensive code and architectural reviews.
+- Refining development, QA, and deployment workflows.
+- Streamlining infrastructural services, optimizing legacy solutions, and facilitating their seamless transition to the cloud or K8S platforms.
+
+For deeper insights, explore these posts: [Legacy Application Challenges](/legacy-app) and [Exploring Databases Beyond SQL](/not-only-sql).
+
+## IIoT (Industrial Internet of Things)
+
+Whether you're in the midst of a digital transformation journey or curious about the potential of modern IIoT in your operations:
+- I can architect your IIoT project, outlining an implementation path that minimizes risks.
+- Enhance your data pipeline, be it on-premise or cloud-based.
+- And once you've mastered data streaming, I'll guide you in harnessing the power of Digital Twins.
+
+Discover more on my dedicated [Digital Twins page](/digital-twins).
+
+## Startup, R&D: From Concept to Reality
+
+Navigating the startup landscape? I can assist in:
+- Identifying the applicability of cutting-edge AI and ML technologies in your business niche.
+- Providing budgetary and timeline estimates for prototyping and MVP development.
+- Assembling a proficient team or guiding you through the outsourcing process for app development.
