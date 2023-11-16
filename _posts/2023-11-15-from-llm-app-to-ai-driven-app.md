@@ -19,7 +19,7 @@ In this article, we delve into the evolving landscape of AI-driven applications,
 
 Our journey starts with an analysis of David Shapiro's demonstration of a medical application, specifically the [**Medical Intake**](https://github.com/daveshap/Medical_Intake) app. This type of application is what we refer to as an LLM-app.
 
-## Steps to Transition from an Initial LLM-App to an AI-Driven App
+# Steps to Transition from an Initial LLM-App to an AI-Driven App
 
 1. **LLM App**: The foundational stage where the app is primarily driven by LLM capabilities.
 2. **Modularization**: Break down the intake process into distinct LLM-activities. This modular approach facilitates structural prompting, response verification, and efficient testing.
@@ -27,9 +27,9 @@ Our journey starts with an analysis of David Shapiro's demonstration of a medica
 4. **Evolution to Case Management**: Drawing from over a decade of experience in BPMS integration, it's observed that workflows tend to become more complex and numerous over time, often evolving into a Case Management System. In our context, the "case" is the intake process, typically comprising various stages and actions (akin to steps in the workflow approach).
 5. **LLM-Driven Decision Making**: The final evolutionary step involves empowering the LLM to oversee case management decisions. While individual actions/steps continue to involve LLM interactions, a new overarching LLM is introduced to orchestrate the entire process.
 
-# Aftermath
+# AI-driven app architecture
 
-### Key Components of an AI-Driven App
+Key blocks of an AI-Driven App
 
 - **Core LLM**: The same LLM used in the initial app is retained for individual activities/steps. It's now enhanced with verification mechanisms, structured prompts, and other techniques to bolster the reliability of each step. This component remains flexible and configurable.
 - **[Optional] Additional Step Types**: Incorporate more diverse steps, such as consulting with experts or retrieving and pre-analyzing data from external systems.
