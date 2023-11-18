@@ -42,27 +42,27 @@ Our aim is to demonstrate how integrating domain expertise can enhance the _cont
 
 ## LLM app 
 
-![LLM app](/assets/llm-app/llm-app.jpg)
+![LLM app](/assets/llm-app/llm-app.png)
 
 The entire functionality is encapsulated within a single Python script.
 
 ## Modularization
-![Extracted steps app](/assets/llm-app/extracted-steps-app.jpg)
+![Extracted steps app](/assets/llm-app/extracted-steps-app.png)
 
 Evolving into a more manageable and testable structure is a logical next step.
 
 ## Workflow
-![Worflow app](/assets/llm-app/wf-engine-driven-app.jpg)
+![Worflow app](/assets/llm-app/wf-engine-driven-app.png)
 
 Introducing workflow engines or business process management solutions is the natural progression for step orchestration.
 
 ## Adaptive case management
-![ACM app](/assets/llm-app/acm-driven-app.jpg)
+![ACM app](/assets/llm-app/acm-driven-app.png)
 
 Even though the initial process seems simple, the need for greater flexibility becomes apparent over time. Adaptive Case Management (ACM) addresses this by breaking down processes into smaller units, introducing the concept of a case with its lifecycle, and centralizing human expertise in managing these cases. 
 
 ## AI
-![AI app](/assets/llm-app/ai-driven-app.jpg)
+![AI app](/assets/llm-app/ai-driven-app.png)
 
 Replacing the human component in ACM with an LLM, we focus on control flow rather than individual tasks. This LLM determines the next steps based on the current state and available actions. The control flow can be enhanced with expert system-style rules, additional information, or alternative data representations. Crucially, integrating human expertise remains vital for moderating AI behavior, adjusting prompts, and introducing new rules. This requires collaboration between AI specialists and domain experts. 
 
@@ -102,9 +102,7 @@ Key components of an AI-Driven App:
 - **Rules**: Knowledge segments that enhance AI performance in complex scenarios.
 - **Structured Document Storage**: An alternative to raw vector storage, facilitating better data management.
 
-
-
-
+![archi blocks](/assets/llm-app/arhi_blocks.png)
 
 
 # Conclusion
