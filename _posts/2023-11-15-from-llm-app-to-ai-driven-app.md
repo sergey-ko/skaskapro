@@ -10,8 +10,6 @@ header:
   teaser: assets/llm-app/teaser.jpg
 ---
 
-> [WiP]
-
 # Introduction
 
 In this article, we delve into the evolving landscape of AI-driven applications, particularly focusing on Large Language Models (LLMs). Let's begin by defining key terms:
