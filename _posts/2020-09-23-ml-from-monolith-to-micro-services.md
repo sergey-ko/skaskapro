@@ -27,71 +27,101 @@ The article concludes by highlighting the advantages of microservices over monol
 {% include video id="487488543" provider="vimeo" %}
 {% include video id="467010915" provider="vimeo" %}
 
-Certainly! Here's the edited version of the article with preserved links and formatting:
-
----
-
-**It's a small story of an IIoT project involving machine learning.**
-
-# Project
-
-A massive locomotive repair facility, currently undergoing a digital transformation, aimed to develop a solution for accurately determining the number of locomotives and their positions within the facility. To accomplish this, several IP cameras were installed across various repair stations. Due to the size of the locomotives and the facility's layout, no single camera could capture an entire locomotive.
-
-*We will not delve into the machine learning methods used in this project. The focus is on the transition from a monolithic application to microservices and its benefits.*
-
-{% include video id="487488543" provider="vimeo" %}
-{% include video id="467010915" provider="vimeo" %}
 
 # Stage #1: PoC
 
-The initial stage involved developing a monolithic Python application that:
-- Received streams from all cameras.
-- Determined the head or tail positions of locomotives for each camera.
-- Combined these estimations to assess the state of the facility.
+The initial phase of the project involved developing a robust monolithic Python application with several key functionalities:
+- **Streaming Video Data**: The application was designed to receive and process live video streams from multiple cameras installed throughout the facility. This step was crucial in capturing real-time visual data of the locomotives at various repair stations.
+- **Locomotive Position Analysis**: The core functionality centered around analyzing each video feed to determine whether the locomotive's head or tail was in view for each camera. This was a challenging task due to the limited field of view of each camera and the large size of the locomotives.
+- **Facility State Estimation**: By integrating the positional data from all camera feeds, the application could generate a comprehensive estimation of the entire facility's state. This involved mapping out the location and orientation of each locomotive within the facility, providing a dynamic and updated view of operations.
 
-The application, dockerized and deployed on a GPU-equipped server using the [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-docker), connected all cameras through a pre-established local network. 
+To manage the computationally intensive tasks, the application was dockerized and deployed on a server equipped with a powerful GPU. Utilizing the [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-docker), the team ensured optimal utilization of the GPU resources for processing the video streams and executing the machine learning algorithms efficiently. The dockerization also facilitated easy deployment and scalability of the application.
 
-While the PoC was successful, it required further development due to occasional crashes caused by camera instability or other errors.
+All cameras were interconnected through a previously established local network, ensuring a seamless and high-speed transmission of video data to the server. This network infrastructure was critical in maintaining the real-time processing capabilities of the system.
+
+Despite the initial success of the Proof of Concept (PoC), the application encountered challenges that necessitated further development:
+- **System Instability**: The application occasionally experienced crashes, which were primarily attributed to the instability of the camera feeds. Interruptions or fluctuations in the video streams led to processing failures.
+- **Error Handling**: The system needed improved mechanisms for handling errors and anomalies in video transmission and processing. This was essential to ensure continuous and reliable operation of the facility's monitoring.
+- **Scalability Concerns**: As the application was monolithic in nature, scaling specific components to handle increasing loads or to integrate additional features was a complex task.
+
+The team recognized these challenges as part of the iterative development process. They provided valuable insights into the need for a more flexible, scalable, and robust system architecture, leading to the next stage of the project's evolution.
 
 ![monolith app](/assets/ml-micro-services/monolith.png)
 
+
 # Stage #2: Micro-services
 
-The application evolved into a micro-services architecture with distinct services for:
-- Video stream capture.
-- Image aggregation – processing, caching images, and generating data packets.
-- Locomotive Position Estimator (LPE) – estimating a locomotive's position.
-- Facility State Estimator (FSE) – asynchronously aggregating locomotive position data to estimate the facility's state.
+In the progression of this IIoT project at the locomotive repair facility, the shift to a micro-services architecture was pivotal, particularly in addressing the unique challenges presented by the edge GPU server and the nature of IIoT systems dealing with external data flows:
+
+- **Video Stream Capture**: This service focused on capturing live video feeds from facility cameras, crucial for real-time data processing on the edge GPU server, ensuring low latency in data handling.
+- **Image Aggregation**: Responsible for processing video streams, this service handled frame extraction and image processing. Its role was vital in managing the high-volume data from IoT devices, optimizing the use of GPU resources for image analysis.
+- **Locomotive Position Estimator (LPE)**: Utilizing the edge computing capabilities, the LPE efficiently processed the camera feeds to determine locomotive positions, crucial for immediate data processing without the latency of cloud computing.
+- **Facility State Estimator (FSE)**: It synthesized data from various inputs, including the LPE, to create a dynamic overview of the facility, demonstrating the system’s ability to handle complex data flows from multiple IIoT sources.
+
+Key Advantages in the Context of IIoT and Edge Computing:
+- **Scalability**: The architecture's scalability was enhanced by the ability to distribute processing tasks between the edge GPU server and cloud services, effectively managing the workload from numerous IoT devices.
+- **Resilience**: The system’s resilience was bolstered by the distributed nature of micro-services, allowing for continuous operation even if one service experienced issues, a critical feature in the unpredictable environments of IIoT and edge computing.
+- **Efficient Data Management**: The use of edge computing in conjunction with cloud services facilitated efficient data management, balancing immediate processing needs with long-term data storage and analysis.
+- **Enhanced Real-Time Processing**: The micro-services architecture, combined with edge computing, enabled more efficient real-time processing of data, crucial for timely decision-making in the IIoT ecosystem.
 
 ![micro services](/assets/ml-micro-services/services.png)
 
-These services communicated via message/stream processing software like zeroMQ/[imagezmq](https://github.com/jeffbass/imagezmq) (for reduced latency), rabbitMQ (for ease of use and management), and kafka (requiring [external storage for images](https://www.kai-waehner.de/blog/2020/08/07/apache-kafka-handling-large-messages-and-files-for-image-video-audio-processing/)). This loose coupling allowed for team expansion with data scientists, developers, and DevOps specialists.
+The communication between services was handled through advanced message/stream processing software like zeroMQ/[imagezmq](https://github.com/jeffbass/imagezmq), rabbitMQ, and kafka ([requiring external storage for images](https://www.kai-waehner.de/blog/2020/08/07/apache-kafka-handling-large-messages-and-files-for-image-video-audio-processing/)), ensuring efficient data flow across the system. This approach not only addressed the limitations of the initial monolithic structure but also effectively harnessed the capabilities of edge computing, making the system more adaptable and robust for the challenges of IIoT environments.
+
 
 # Stage #3: Data Flows
 
-Data from the application was sent to a cloud solution, stored in dedicated DB (Time Series DB), and utilized for real-time dashboards and reporting. The constant improvement of the cloud solution and the real-time data flow greatly benefited the development team. Real data, even with minor flaws, was preferred over simulated data to create a more motivated feedback loop involving Business Analysts and Project Managers.
+This stage focused on efficiently managing and utilizing the data generated by the micro-services, integrating it into a cloud solution for enhanced analysis and decision-making:
 
-Two initial services—video stream capture and image processing—required little to no improvements over time.
+- **Cloud Integration and Storage**: Data from the micro-services was sent to a cloud-based Time Series Database (TSDB), ideal for handling large-scale, time-sensitive data. This facilitated real-time analytics and was critical for effective data management.
 
-The data flow was bifurcated post-image processing into:
-- Development flow: dev **LPE** + dev **FPE**.
-- Production flow: prod **LPE** + prod **FPE**.
+- **Real-time Dashboards and Reporting**: The cloud-stored data powered real-time dashboards and reports, providing immediate operational insights for quick decision-making and timely responses.
+
+- **Enhanced Development Feedback Loop**: Continuous improvement of the cloud solution, coupled with real-time data flow, allowed the development team to work with actual operational data, enhancing the feedback process with Business Analysts and Project Managers.
+
+- **Service Stability**: The initial services, video stream capture, and image processing, proved stable and required minimal adjustments, forming a reliable foundation for the data flow process.
+
+- **Bifurcated Data Flow**:
+    - **Development Flow**: Data was channeled through developmental versions of the Locomotive Position Estimator (LPE) and the Facility Position Estimator (FPE) for testing new updates in a controlled environment.
+    - **Production Flow**: Concurrently, the production flow used stable versions of the LPE and FPE, ensuring consistent service for operational needs.
 
 ![dataflows](/assets/ml-micro-services/dataflows.png)
 
-This setup was sufficient at the time but was designed to allow easy extension for testing different scenarios or incorporating test/QA loops.
+This dual-flow approach maintained production integrity while allowing continuous improvement and testing. The system's scalable and adaptable design prepared it for future expansions and integrations, ensuring its long-term effectiveness in the dynamic setting of the locomotive repair facility.
+
 
 # Stage #4: Extensibility
 
-Upon stabilizing the **FSE** data flow, new requirements were identified by Project Managers, like extracting additional information from video streams (e.g., locomotive model/type, 'plate number'). To address these, two more microservices were developed:
-- A locomotive model estimator.
-- A 'plate number' recognizer.
+This stage marked the system's expansion to meet new operational demands:
 
-These services received images from the image processor service queues and sent information to the FSE.
+- **New Informational Needs**: With a stable data flow from the Facility State Estimator (FSE), Project Managers identified the need for more detailed data from the video streams. Specific requirements emerged for identifying locomotive models/types and 'plate numbers', crucial for enhancing operational management and maintenance planning.
+
+- **Development of Targeted Microservices**:
+    - **Locomotive Model Estimator**: This service employed advanced image recognition techniques to determine locomotive models and types, aiding in logistical and maintenance decision-making.
+    - **'Plate Number' Recognizer**: Focused on identifying and recording locomotives' unique identification numbers, this service was key for tracking and optimizing facility workflow.
+
+- **Seamless Integration and Enhanced Reporting**: These services were integrated with the existing microservices architecture, receiving data from image processors and feeding into the FSE. Their inclusion allowed for more detailed reporting, covering not only locomotive positions but also specific characteristics and identities.
 
 ![final microservices](/assets/ml-micro-services/final.png)
 
+This phase showcased the system’s adaptability, enhancing its functionalities to address evolving requirements and setting the stage for future sophisticated applications.
+
+---
+
 # Conclusion
 
-1. Monolithic apps are suitable for simple PoCs, easier for analysts familiar with this approach. However, beyond the PoC stage, microservices and data flows are more effective.
-2. Image processing should be treated as a common IIoT data flow process: receive, transform, estimate states, and deduce higher-level system states.
+Reflecting on the IIoT project at the locomotive repair facility, key insights include:
+
+1. **Monolithic vs. Microservices Architecture**: 
+    - **Early Stages**: A monolithic app was effective for the initial Proof of Concept (PoC), simplifying development for analysts. It facilitated quick testing of basic functionalities like video stream capture and locomotive positioning.
+    - **Scaling and Complexity**: As the project's complexity increased, a microservices architecture became crucial. This approach was more adaptable and scalable, essential for integrating advanced functions like the Locomotive Model Estimator and the 'Plate Number' Recognizer.
+
+2. **IIoT Data Flow and Image Processing**:
+    - **Integration and Processing**: The project highlighted the importance of integrating image processing into the IIoT data flow. Effective data capture and analysis were key for accurate state estimation of both individual locomotives and the entire facility.
+    - **Advanced Applications**: The use of advanced image processing and machine learning demonstrated the potential for such technologies in industrial settings, improving accuracy and operational efficiency.
+
+3. **Adaptability and Future-Proofing**:
+    - **Evolving Requirements**: The system's adaptability to changing needs was crucial, as evidenced by the introduction of new services in later stages.
+    - **Long-Term Viability**: The evolution from a PoC to a sophisticated, microservices-based system underscores the importance of flexible, scalable, and adaptable digital solutions in industrial environments.
+
+In summary, this IIoT project not only achieved its initial goals but also served as a model for digital transformation in industrial settings, demonstrating the necessity of adaptable, scalable, and technologically advanced solutions.
